@@ -424,15 +424,22 @@ class View {
 
       if (check) {
         let userInputCheck = 0;
+        let status=false;
         //To check duplicate passenger details for same PNR
-        if (this._passengerdetails.length !== 0) {
-          this._passengerdetails[this._passengerdetails.length - 1].forEach((ele, index) => {
+        if (this._passengerdetails.length !== 0) {  
+          this._passengerdetails.forEach((e, i) => {
+            e.forEach((ele,index)=>{
             if (index < 3 && ele.toLowerCase() === val[index].toLowerCase()) {
               userInputCheck = userInputCheck + 1;
-            }
+              }
+              if(userInputCheck===3){
+                status=true;
+              }
+            })
+            userInputCheck=0;
           });
         }
-        if (userInputCheck === 3) {
+        if (status===true) {
           swal({
             title: "IRCTC Alert!!!",
             text: "Failed to add passenger. Passenger with same details already exists",
@@ -478,49 +485,39 @@ class View {
   validatePassengersDetails(ele, val, index) {
     if (index === 0) {
       if (val === null || val === "") {
-        swal({
-          title: "IRCTC Alert!!!",
-          text: "Name should not be empty",
-        });
+        this.SweetAlertFunction(ele);
+        //alert("Name should not be empty");
         ele.value = "";
         return false;
       }
     }
     if (index === 1) {
       if (val == "") {
-        swal({
-          title: "IRCTC Alert!!!",
-          text: "Age should not be empty",
-        });
+        this.SweetAlertFunction(ele);
+        //alert("Age should not be empty");
         ele.value = "";
         return false;
       }
       if (isNaN(val) || val < 5 || val > 100) {
         //age must be between 5-100
-        swal({
-          title: "IRCTC Alert!!!",
-          text:"The age must be a number between 5 and 100",
-        });
+        this.SweetAlertFunction(ele);
+        //alert("The age must be a number between 5 and 100");
         ele.value = "";
         return false;
       }
     }
     if (index === 2) {
       if (val === "Gender") {
-        swal({
-          title: "IRCTC Alert!!!",
-          text:"Please select gender",
-        });
+        this.SweetAlertFunction(ele);
+        //alert("Please select gender");
         ele.value = "Gender";
         return false;
       }
     }
     if (index === 3) {
       if (val === "Berth type") {
-        swal({
-          title: "IRCTC Alert!!!",
-          text:"Please select Berth type",
-        });
+        this.SweetAlertFunction(ele);
+        //alert("Please select Berth type");
         ele.value = "Berth type";
         return false;
       }
@@ -528,14 +525,19 @@ class View {
     if (index === 4) {
       let regx = /^[6-9]\d{9}$/;
       if (val === "" || regx.test(val) === false) {
-        swal({
-          title: "IRCTC Alert!!!",
-          text:"Please enter valid phone Number",
-        });
+        this.SweetAlertFunction(ele);
+        //alert("Please enter valid phone Number");
         ele.value = "";
         return false;
       }
     }
+  }
+
+  SweetAlertFunction(ele){
+    swal({
+      title: "IRCTC Alert!!!",
+      text: "Please enter valid inputs for all fields",
+    });
   }
 
   /**
