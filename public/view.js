@@ -533,6 +533,10 @@ class View {
     }
   }
 
+/**
+ * Sweet alert for passenger input fields 
+ * @param {DOMElement} ele  Input element
+ */
   SweetAlertFunction(ele){
     swal({
       title: "IRCTC Alert!!!",
