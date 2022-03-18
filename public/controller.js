@@ -13,14 +13,22 @@ class Controller {
   constructor(model, view) {
     this.model = model;                                           //Model class object
     this.view = view;                                             //View calss object
+    this.view.showWelcome();
     this.view.AutoCompleteForFromANDTo();                         //Method for autoComplete feature 
     this.view.setDatefieldInBookingSection();                     //Setting calender element min and value fields to current date
-    this.view.bindSearchTrainsButton(this.handleSearchTrains);    //To handle click operation on search trains button 
+    this.view.bindSearchTrainsButton(this.handleSearchTrains,this.timerStop);    //To handle click operation on search trains button 
     this.view.bindpnrsearch(this.handlepnrsearch);                //To handle click operation on pnr search button 
     this.view.bindpnrCancelsearch(this.handlepnrsearchCancel);    //To handle click operation on pnr cancel button
     this.view.bindConfirmCancel(this.getCancelPassengerData);     //To handle click operation on confirm cancel button
   }
 
+/**
+ * To stop fetching of trains data from database
+ */
+ timerStop=()=>{
+    clearInterval(this._myInterval);
+  }
+  
   /**
  * Handler method after clicking on search trains button
  * @param {string} source
@@ -28,8 +36,8 @@ class Controller {
  * @param {string} date 
   */
   handleSearchTrains = async (source, destination, date) => {
-    clearInterval(this.myInterval);                               //To stop setInterval means fetching of train data from Database
-
+    clearInterval(this._myInterval);                               //To stop setInterval means fetching of train data from Database
+    
     //calling getTrainDetails in model class for getting train details depending on the user selection
     [this._trainsFoundlist, this.status] = await this.model.getTrainsDetails(source, destination, date);
 
@@ -45,7 +53,7 @@ class Controller {
       this.view.displayMovements(this._trainsFoundlist);
 
       //setinterval to fetch avialable seats of trains for every 1 sec 
-      this.myInterval = setInterval(async () => {
+      this._myInterval = setInterval(async () => {
         [this._trainsFoundlist, this.status] = await this.model.getTrainsDetails(source, destination, date);
         this.view.displayMovements(this._trainsFoundlist);
         this.view.bindAvailableSeatsClick(this.handleAvailableSeatsClick);
@@ -56,7 +64,6 @@ class Controller {
     //Click action call to open modal1 Window
     this.view.bindAvailableSeatsClick(this.handleAvailableSeatsClick);
     this.view.bindModelWindow1Close();
-
   };
 
   /**

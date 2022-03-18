@@ -16,6 +16,7 @@ class View {
   _passengerdetails = [];
   _trainslist;
   _helperHandler;
+  _timerStop;
   _currentDate = new Date().toISOString().split("T")[0];
   _places = ["Anakapalle", "Tirupati", "Gundur", "Nellore", "Kavali", "Ongole", "Chirala", "Tenali", "Vijayawada", "Warangal", "Secunderabad", "Nizamabad", "Adilabad", "Vishakapatnam", "Rajamundry", "Eluru", "Hyderabad", "Guntur", "Chennai Central", "Mahbubabad", "Kazipet", "Kondapalli", "Khammam", "Ghanpur", "New Delhi", "Agra Cantt", "Gwalior", "Bhopal", "Nagpur", "Chandrapur", "Balharshah", "Sirpur Kagazngr", "Ramgundam"];
 
@@ -23,7 +24,7 @@ class View {
   * Intializes the showWelcome function 
   */
   constructor() {
-    this.showWelcome();
+    //this.showWelcome();
    }
 
 /**
@@ -203,7 +204,7 @@ class View {
    * on the source and distination entered by passenger
    * @param {method} handler        it handles search trains button click event
    */
-  bindSearchTrainsButton(handler) {
+  bindSearchTrainsButton(handler,timerStop) {
     this._searchButton.addEventListener("click", (event) => {
       event.preventDefault();
       if (
@@ -211,12 +212,13 @@ class View {
         !this._destination.value ||
         !this._date.value
       ) {
+        timerStop();
+        this.removeTrainDetailsMovements();
+        this.showWelcome();
         swal({
           title: "IRCTC Alert!!!",
           text: "Please enter all fields",
         });
-        this.removeTrainDetailsMovements();
-        this.showWelcome();
       } else {
 
         handler(
