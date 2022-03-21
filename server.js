@@ -15,7 +15,7 @@ let mysql = require("mysql");
 let MongoClient = require('mongodb').MongoClient;
 
 /** Specify a MongoDB connection URL with the correct ip address and the name of the database if database doesn't exist it will create a new database*/
-let url = "mongodb://localhost:27017/mydb";  //creating a databse called trainsData
+let url = "mongodb+srv://PoojaChalla:IRCTC@irctctrainsdata.svvnw.mongodb.net/test/mydb";  //creating a databse called trainsData
 
 /** Creating a PORT */
 const PORT = 4500;
@@ -43,31 +43,6 @@ MongoClient.connect(url, function(err, db) {
   db.close();
 });
 
-//To create MongoDB collection
-/* MongoClient.connect("mongodb://localhost:27017/", function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("mydb");
-  dbo.createCollection("trainsData", function(err, res) {
-    if (err) throw err;
-    console.log("Collection created!");
-    db.close();
-  });
-}); */
-
-//To read JSON file
-//const TrainsData = JSON.parse(fs.readFileSync("./public/trainList.json"));
-
-//To insert document in the trainsData collection
-/* MongoClient.connect("mongodb://localhost:27017/", function(err, db) {
-  if (err) throw err;
-  let dbo = db.db("mydb");
-  dbo.collection("trainsData").insertMany(TrainsData, function(err, res) {
-    if (err) throw err;
-    console.log("Number of documents inserted: " + res.insertedCount);
-    db.close();
-  });
-}); */
-
 /**
  * To create a new GET type rest request to access all train documents from MongoDB database collection.
  * @param {string} "/trainsDetails" - RestAPI call
@@ -79,7 +54,7 @@ app.get("/trainsDetails", (req, res) => {
  * @param {string} "mongodb://localhost:27017/" - MongoDB connection url
  * @param {Method} function
  */
-MongoClient.connect("mongodb://localhost:27017/", function(err, db) {
+MongoClient.connect("mongodb+srv://PoojaChalla:IRCTC@irctctrainsdata.svvnw.mongodb.net/test", function(err, db) {
   if (err) throw err;
   var dbo = db.db("mydb");
   dbo.collection("trainsData").find({}).toArray(function(err, result) {
@@ -108,7 +83,7 @@ app.post("/trainsDetails/:trainName", (req, res) => {
  * @param {string} "mongodb://localhost:27017/" - MongoDB connection url
  * @param {Method} function
  */
-  MongoClient.connect("mongodb://localhost:27017/", function(err, db) {
+  MongoClient.connect("mongodb+srv://PoojaChalla:IRCTC@irctctrainsdata.svvnw.mongodb.net/test", function(err, db) {
     if (err) throw err;
     let dbo = db.db("mydb");
 
@@ -236,3 +211,15 @@ app.put("/bookedpassengersdata/:pnrnumberCancel", (req, res) => {
     res.send(JSON.stringify(results));
   });
 });
+
+
+/* app.get("/data", (req, res) => {
+  //SQL query to select passenger details
+  connection.query(
+    "select * from booked_traindetails join booked_passengerdetails on booked_passengerdetails.pnrnumber1 = booked_traindetails.pnrnumber",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    }
+  );
+}); */
