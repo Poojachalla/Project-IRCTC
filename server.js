@@ -43,6 +43,8 @@ MongoClient.connect(url, function(err, db) {
   db.close();
 });
 
+url="mongodb+srv://PoojaChalla:IRCTC@irctctrainsdata.svvnw.mongodb.net/test";
+
 /**
  * To create a new GET type rest request to access all train documents from MongoDB database collection.
  * @param {string} "/trainsDetails" - RestAPI call
@@ -51,10 +53,10 @@ MongoClient.connect(url, function(err, db) {
 app.get("/trainsDetails", (req, res) => {
 /**
  * To select data from a documents in MongoDB using find method. To create MongoDB query to fetch data from database and send json data to client as response object
- * @param {string} "mongodb://localhost:27017/" - MongoDB connection url
+ * @param {string} url - MongoDB connection url
  * @param {Method} function
  */
-MongoClient.connect("mongodb+srv://PoojaChalla:IRCTC@irctctrainsdata.svvnw.mongodb.net/test", function(err, db) {
+MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("mydb");
   dbo.collection("trainsData").find({}).toArray(function(err, result) {
@@ -80,10 +82,10 @@ app.post("/trainsDetails/:trainName", (req, res) => {
 
 /**
  * To update seats availablity field of a particular train in MongoDB document using rest api. 
- * @param {string} "mongodb://localhost:27017/" - MongoDB connection url
+ * @param {string} url - MongoDB connection url
  * @param {Method} function
  */
-  MongoClient.connect("mongodb+srv://PoojaChalla:IRCTC@irctctrainsdata.svvnw.mongodb.net/test", function(err, db) {
+  MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     let dbo = db.db("mydb");
 
