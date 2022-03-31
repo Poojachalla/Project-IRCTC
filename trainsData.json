@@ -1,6 +1,6 @@
 [{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff8332"
+    "$oid": "6245af8aad434b38fcb84e69"
   },
   "train_name": "Krishna Express",
   "train_number": "17405",
@@ -382,7 +382,7 @@
   ]
 },{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff8333"
+    "$oid": "6245af8aad434b38fcb84e6a"
   },
   "train_name": "Tirumala Express",
   "train_number": "17488",
@@ -572,7 +572,7 @@
   ]
 },{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff8334"
+    "$oid": "6245af8aad434b38fcb84e6b"
   },
   "train_name": "Chennai Express",
   "train_number": "12604",
@@ -615,8 +615,8 @@
       "Available_Seat": [
         "W63",
         "A02",
+        "W1",
         "A02",
-        "A2",
         "A04",
         "A42"
       ]
@@ -716,14 +716,14 @@
   ]
 },{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff8335"
+    "$oid": "6245af8aad434b38fcb84e6c"
   },
   "train_name": "Satavahana Express",
   "train_number": "14631",
   "start_time": "07:05:00",
   "end_time": "20:00:00",
   "source": "Vijayawada",
-  "destination": "Secundrabad",
+  "destination": "Secunderabad",
   "junctions": [
     {
       "Station-1": "Vijayawada",
@@ -826,7 +826,7 @@
       ]
     },
     {
-      "Station-6": "Secundrabad",
+      "Station-6": "Secunderabad",
       "Time": "20:00:00",
       "Date": [
         "2022-04-01",
@@ -840,14 +840,14 @@
   ]
 },{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff8336"
+    "$oid": "6245af8aad434b38fcb84e6d"
   },
   "train_name": "Guntur Express",
   "train_number": "54415",
   "start_time": "13:30:00",
   "end_time": "22:00:00",
   "source": "Guntur",
-  "destination": "Secundrabad",
+  "destination": "Secunderabad",
   "junctions": [
     {
       "Station-1": "Guntur",
@@ -990,7 +990,7 @@
       ]
     },
     {
-      "Station-8": "Secundrabad",
+      "Station-8": "Secunderabad",
       "Time": "22:00:00",
       "Date": [
         "2022-04-01",
@@ -1004,14 +1004,14 @@
   ]
 },{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff8337"
+    "$oid": "6245af8aad434b38fcb84e6e"
   },
   "train_name": "Golconda Express",
   "train_number": "52415",
   "start_time": "13:30:00",
   "end_time": "21:00:00",
   "source": "Guntur",
-  "destination": "Secundrabad",
+  "destination": "Secunderabad",
   "junctions": [
     {
       "Station-1": "Guntur",
@@ -1154,7 +1154,7 @@
       ]
     },
     {
-      "Station-8": "Secundrabad",
+      "Station-8": "Secunderabad",
       "Time": "21:00:00",
       "Date": [
         "2022-04-01",
@@ -1168,17 +1168,17 @@
   ]
 },{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff8338"
+    "$oid": "6245af8aad434b38fcb84e6f"
   },
   "train_name": "Falkanama Express",
   "train_number": "54315",
   "start_time": "20:30:00",
   "end_time": "08:30:00",
-  "source": "Secundrabad",
+  "source": "Secunderabad",
   "destination": "Guntur",
   "junctions": [
     {
-      "Station-1": "Secundrabad",
+      "Station-1": "Secunderabad",
       "Time": "20:00:00",
       "Date": [
         "2022-04-01",
@@ -1332,7 +1332,7 @@
   ]
 },{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff8339"
+    "$oid": "6245af8aad434b38fcb84e70"
   },
   "train_name": "Andhra Pradesh Express",
   "train_number": "22416",
@@ -1836,7 +1836,7 @@
   ]
 },{
   "_id": {
-    "$oid": "62452d4d55e50bf757ff833a"
+    "$oid": "6245af8aad434b38fcb84e71"
   },
   "train_name": "Vishaka Express",
   "train_number": "22417",
@@ -1864,7 +1864,7 @@
       ],
       "Available_Seat": [
         "W23",
-        "A27",
+        "A02",
         "A29",
         "A16",
         "A26",
