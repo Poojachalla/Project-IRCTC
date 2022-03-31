@@ -50,6 +50,7 @@ url="mongodb+srv://PoojaChalla:IRCTC@irctctrainsdata.svvnw.mongodb.net/test";
  * @param {string} "/trainsDetails" - RestAPI call
  * @param {Method} function
  */
+
 app.get("/trainsDetails", (req, res) => {
 /**
  * To select data from a documents in MongoDB using find method. To create MongoDB query to fetch data from database and send json data to client as response object
