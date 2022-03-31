@@ -162,13 +162,13 @@ app.post("/bookedpassengersdata", (req, res) => {
     passengerstatus: req.body.passengerstatus,
     passengerseatnumber: req.body.passengerseatnumber,
   };
-  
-  //Insert query to insert new booked_passengerdetails data into table
   let sqlPassengerDetails = "INSERT INTO booked_passengerdetails SET ?";
-  let query = connection.query(sqlPassengerDetails, newBookingPassengerDetails, (err, results) => {
-    if (err) throw err;
-    res.send(JSON.stringify(results));
-  });
+  let query = connection.query(sqlPassengerDetails,newBookingPassengerDetails,
+    (err, results) => {
+      if (err) throw err;
+      res.send(JSON.stringify(results));
+    }
+  );
 });
 
 
@@ -214,15 +214,3 @@ app.put("/bookedpassengersdata/:pnrnumberCancel", (req, res) => {
     res.send(JSON.stringify(results));
   });
 });
-
-
-/* app.get("/data", (req, res) => {
-  //SQL query to select passenger details
-  connection.query(
-    "select * from booked_traindetails join booked_passengerdetails on booked_passengerdetails.pnrnumber1 = booked_traindetails.pnrnumber",
-    function (error, results, fields) {
-      if (error) throw error;
-      res.end(JSON.stringify(results));
-    }
-  );
-}); */
