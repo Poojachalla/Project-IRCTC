@@ -68,16 +68,19 @@ class Model {
    * @param {string} end    it holds train end time
    * @returns {string}      returns time difference between start and end times
    */
-  CalculateTimeDifference(start, end) {
-    let t1parts = start.Time.split(":");
-    let t1cm = Number(t1parts[0]) * 60 + Number(t1parts[1]);
+  CalculateTimeDifference(startD,start, EndD,end) {
 
-    let t2parts = end.Time.split(":");
-    let t2cm = Number(t2parts[0]) * 60 + Number(t2parts[1]);
-
-    let hour = Math.floor((t1cm - t2cm) / 60);
-    let min = Math.floor((t1cm - t2cm) % 60);
-    return Math.abs(hour) + "h " + Math.abs(min) + "m";
+  let date1 = new Date(`${startD} ${start.Time}`);
+  let date2 = new Date(`${EndD} ${end.Time}`);
+  let diff = date2.getTime() - date1.getTime();
+  let msec = diff;
+  let hh = Math.floor(msec / 1000 / 60 / 60);
+  msec -= hh * 1000 * 60 * 60;
+  let mm = Math.floor(msec / 1000 / 60);
+  msec -= mm * 1000 * 60;
+  let ss = Math.floor(msec / 1000);
+  msec -= ss * 1000;
+  return hh + "h " + mm + "m";
   }
 
   /**
@@ -120,10 +123,10 @@ class Model {
         //means train not yet started
         if (hour < 4 && hour >= 0) {
           //to check if time left for train to start is <= 4hr then we can't book tickets
-          return "NOT AVAILABLE";
+          return "Not Available";
         }
         //return "Available";
-      } else return "TRAIN DEPARTED"; //means train already started
+      } else return "Train Departed"; //means train already started
     }
   }
 
@@ -171,9 +174,13 @@ class Model {
             ) {
               this.CompareTrainTimeWithCurrentTime(date, res2["Time"]);
               status = true;
+
+              let startD=this.getTrainStartAndEndDateAvailableSeats(index1,index2,index3,this.searchDate(res2["Date"], date)[0])[0];
+              let EndD=this.getTrainStartAndEndDateAvailableSeats(index1,index2,index3,this.searchDate(res2["Date"], date)[0])[1];
+
               timediff = this.CalculateTimeDifference(
-                this.getJunctionStationsByIndex(index1, index2),
-                this.getJunctionStationsByIndex(index1, index3)
+                startD,this.getJunctionStationsByIndex(index1, index2),
+                EndD,this.getJunctionStationsByIndex(index1, index3)
               );
 
               //Pushing the found train details into an array
@@ -215,6 +222,8 @@ class Model {
     return this.searchTrain(source, destination, date);
     }
     catch(err){
+      console.log("MongoDB error3...............");
+      //window.location.reload();
       console.error(err);
     }
   }
