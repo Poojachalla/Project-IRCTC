@@ -122,18 +122,18 @@ class View {
       let temp, col;
       if (mov[4][2].slice(0, 1) === "W") {
         temp = "Waiting List:" + mov[4][2];
-        col = "#E83E3E";
+        col = "#E97159";
       } else {
         temp = "Available Seats:" + mov[4][2];
-        col = "#7dd035";
+        col = "#99E187";
       }
       if (mov[5] === "Train Departed") {
         temp = "Train Departed";
-        col = "#E83E3E";
+        col = "#E97159";
       }
       if (mov[5] === "Not Available") {
         temp = "Not Available";
-        col = "#E83E3E";
+        col = "#E97159";
       }
 
       const html = `
@@ -282,9 +282,9 @@ class View {
           ele.textContent.trim() === "Train Departed" ||
           ele.textContent.trim() === "Not Available"
         ) {
-          ele.style.backgroundColor = "#E83E3E";
+          ele.style.backgroundColor = "#E97159";
         } else {
-          ele.style.backgroundColor = "#7dd035";
+          ele.style.backgroundColor = "#99E187";
         }
       });
       //To reset Number of passengers field value
