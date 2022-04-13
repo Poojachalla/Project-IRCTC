@@ -122,18 +122,18 @@ class View {
       let temp, col;
       if (mov[4][2].slice(0, 1) === "W") {
         temp = "Waiting List:" + mov[4][2];
-        col = "#ff3838";
+        col = "#E83E3E";
       } else {
         temp = "Available Seats:" + mov[4][2];
         col = "#7dd035";
       }
-      if (mov[5] === "TRAIN DEPARTED") {
-        temp = "TRAIN DEPARTED";
-        col = "#ff3838";
+      if (mov[5] === "Train Departed") {
+        temp = "Train Departed";
+        col = "#E83E3E";
       }
-      if (mov[5] === "NOT AVAILABLE") {
-        temp = "NOT AVAILABLE";
-        col = "#ff3838";
+      if (mov[5] === "Not Available") {
+        temp = "Not Available";
+        col = "#E83E3E";
       }
 
       const html = `
@@ -244,8 +244,8 @@ class View {
     this.getModel1Elements();
     document.querySelectorAll(".Available-seats").forEach((ele) => {
       if (
-        ele.textContent.trim() != "TRAIN DEPARTED" &&
-        ele.textContent.trim() != "NOT AVAILABLE"
+        ele.textContent.trim() != "Train Departed" &&
+        ele.textContent.trim() != "Not Available"
       ) {
         ele.addEventListener("click", (event) => {
           ele.style.backgroundColor = "#a9b6af";
@@ -279,10 +279,10 @@ class View {
       document.querySelectorAll(".Available-seats").forEach((ele) => {
         if (
           ele.textContent.trim().slice(0, 1) === "W" ||
-          ele.textContent.trim() === "TRAIN DEPARTED" ||
-          ele.textContent.trim() === "NOT AVAILABLE"
+          ele.textContent.trim() === "Train Departed" ||
+          ele.textContent.trim() === "Not Available"
         ) {
-          ele.style.backgroundColor = "#ff3838";
+          ele.style.backgroundColor = "#E83E3E";
         } else {
           ele.style.backgroundColor = "#7dd035";
         }
