@@ -222,8 +222,6 @@ class Model {
     return this.searchTrain(source, destination, date);
     }
     catch(err){
-      console.log("MongoDB error3...............");
-      //window.location.reload();
       console.error(err);
     }
   }
